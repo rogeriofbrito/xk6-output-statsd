@@ -54,7 +54,7 @@ func (o *Output) dispatch(entry metrics.Sample) error {
 	case metrics.Counter:
 		return o.client.Count(entry.Metric.Name, int64(entry.Value), tagList, 1)
 	case metrics.Trend:
-		return o.client.TimeInMilliseconds(entry.Metric.Name, entry.Value, tagList, 1)
+		return o.client.Distribution(entry.Metric.Name, entry.Value, tagList, 1)
 	case metrics.Gauge:
 		return o.client.Gauge(entry.Metric.Name, entry.Value, tagList, 1)
 	case metrics.Rate:
